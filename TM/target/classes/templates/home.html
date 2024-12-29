@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Transport Management System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <style>
+        .img{
+            background-image: url('/images/dd.jpg');
+            background-size: cover;
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Avoids tiling the image */
+    width: 100%; /* Full-width container */
+    height: 400px; /* Adjust the height based on your requirement */
+    font-size: 40px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: rgb(7, 6, 6);
+       }
+    </style>
+</head>
+<body>
+<div class="img">
+        <p><strong>Welcome to Transport<br>Management<br>System</strong></p>
+        
+    </div>
+<div class="container mt-5">
+    <h1 class="mb-4">Transport Management System</h1>
+
+    <!-- Drivers Section -->
+    <h2>Drivers</h2>
+    <a th:href="@{/transport/drivers/new}" class="btn btn-primary mb-3">Add New Driver</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>License Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="driver : ${drivers}">
+                <td th:text="${driver.name}"></td>
+                <td th:text="${driver.licenseNumber}"></td>
+                <td>
+                    <a th:href="@{/transport/drivers/edit/{id}(id=${driver.id})}" class="btn btn-warning btn-sm">Edit</a>
+                    <a th:href="@{/transport/drivers/delete/{id}(id=${driver.id})}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Vehicles Section -->
+    <h2 class="mt-5">Vehicles</h2>
+    <a th:href="@{/transport/vehicles/new}" class="btn btn-primary mb-3">Add New Vehicle</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="vehicle : ${vehicles}">
+                <td th:text="${vehicle.name}"></td>
+                <td th:text="${vehicle.type}"></td>
+                <td>
+                    <a th:href="@{/transport/vehicles/edit/{id}(id=${vehicle.id})}" class="btn btn-warning btn-sm">Edit</a>
+                    <a th:href="@{/transport/vehicles/delete/{id}(id=${vehicle.id})}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Routes Section -->
+    <h2 class="mt-5">Routes</h2>
+    <a th:href="@{/transport/routes/new}" class="btn btn-primary mb-3">Add New Route</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Start Location</th>
+                <th>End Location</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="route : ${routes}">
+                <td th:text="${route.startLocation}"></td>
+                <td th:text="${route.endLocation}"></td>
+                <td>
+                    <a th:href="@{/transport/routes/edit/{id}(id=${route.id})}" class="btn btn-warning btn-sm">Edit</a>
+                    <a th:href="@{/transport/routes/delete/{id}(id=${route.id})}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
